@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Song</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon-16x16.png') }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon-32x32.png') }}" sizes="32x32">
+    <meta name="keywords" content="Ekomers Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+
+
+
+
+    </script>
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel='stylesheet' type='text/css'/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Custom Theme files -->
+    <link href="{{ url_for('static', filename='css/jquery.slinky.css') }}" rel='stylesheet' type='text/css'/>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel='stylesheet' type='text/css'/>
+    <!-- Custom Theme files -->
+    <!--webfont-->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.slinky.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.6.0/APlayer.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.fixedheadertable.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+
+
+
+
+
+    </script>
+</head>
+<body onload="checkCookie()">
+<div id="header" class="header">
+    <div class="container">
+        <div class="header_top">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" width="80%" alt=""/>
+            </div>
+            <div class="top-nav" style="width: 60% !important; margin-left: 2% !important">
+                <ul class="nav1">
+                    <li class="active"><a href="{{ url_for('home') }}" style="font-size: 3.1em !important">集成计算材料工程信息基础设施数据库</a></li>
+                </ul>
+            </div>
+            <ul id="buttons" class="widget" style="margin-top: 40px !important">
+                <a href="{{ url_for('register') }}">
+                    <li class="join">Join Now</li>
+                </a>
+                <a href="{{ url_for('login') }}">
+                    <li class="join">Login</li>
+                </a>
+            </ul>
+            <ul id="buttons1" class="widget" style="display: none">
+                <a href="#">
+                    <li class="join" id="username">User name</li>
+                </a>
+                <a href="#">
+                    <li class="join">Exit</li>
+                </a>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div id="content" class="container">
+            <div style="width:40%; float:left; display: inline;">
+                <img src="{{ picUrl }}" width="100%">
+            </div>
+            <div style="float: left;">
+                <div style="float: left;">
+                    <table class="tableizer-table">
+                        <thead>
+                        <tr class="tableizer-firstrow">
+                            <th>牌号</th>
+                            <th>合金类型</th>
+                            <th>熔点(固)</th>
+                            <th>熔点(液)</th>
+                            <th>密度(25C拟合)</th>
+                            <th>密度斜率</th>
+                            <th>模量(25C)</th>
+                            <th>模量斜率</th>
+                            <th>泊松比(25C)</th>
+                            <th>泊松比斜率</th>
+                            <th>热导率(25C)</th>
+                            <th>热导率斜率</th>
+                            <th>电导率(25C)</th>
+                            <th>电导率斜率</th>
+                            <th>热膨胀(CTE 25C)</th>
+                            <th>CTE斜率</th>
+                            <th>热晗(25C)</th>
+                            <th>热晗斜率</th>
+                            <th>热容(25C)</th>
+                            <th>热容斜率</th>
+                            <th>潜热(J/mole)</th>
+                            <th>体积收缩率(%)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% if data['physicsResult'] != None %}
+                            {% for row_index in range(data['physicsResult']|count) %}
+                            <td>
+                                {% if data['physicsResult'][row_index] is number %}
+                                {{ data['physicsResult'][row_index]|round(6) }}
+                                {% else %}
+                                {{ data['physicsResult'][row_index] }}
+                                {% endif %}
+                            </td>
+                            {% endfor %}
+                            {% endif %}
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="tableizer-table">
+                        <thead>
+                        {% if alloyType == "Al合金" or alloyType == "Mg合金" or alloyType == "焊料合金" %}
+                        <tr class="tableizer-firstrow">
+                            <th>牌号</th>
+                            <th>工艺（文本）</th>
+                            <th>测试温度</th>
+                            <th>拉UTS(MPa)</th>
+                            <th>拉伸YS(MPa)</th>
+                            <th>延伸率(%)</th>
+                            <th>硬度BHN</th>
+                            <th>压缩YS(MPa)</th>
+                            <th>压缩塑性(%)</th>
+                            <th>腐蚀速率(mm/y)</th>
+                            <th>疲劳R-1</th>
+                            <th>疲劳R0</th>
+                            <th>应力腐蚀疲劳KIC</th>
+                            <th>稳定蠕变k</th>
+                            <th>稳定蠕变n</th>
+                        </tr>
+                        {% elif alloyType == "不锈钢" %}
+                        <tr class="tableizer-firstrow">
+                            <th>合金牌号</th>
+                            <th>试样及状态</th>
+                            <th>拉UTS(MPa)</th>
+                            <th>拉伸YS(MPa)</th>
+                            <th>延伸率(%)</th>
+                            <th>硬度HV</th>
+                            <th>压缩强度/MPa</th>
+                            <th>腐蚀率/g.m-2.h-1</th>
+                            <th>旋转弯曲疲劳性能（退火）</th>
+                            <th>高温蠕变强度</th>
+                        </tr>
+                        {% else %}
+                        <tr class="tableizer-firstrow">
+                            <th>牌号</th>
+                            <th>工艺（文本）</th>
+                            <th>测试温度</th>
+                            <th>拉伸YS(MPa)</th>
+                            <th>拉伸UTS(MPa)</th>
+                            <th>延伸率(%)</th>
+                            <th>温度/℃</th>
+                            <th>应力/MPa</th>
+                            <th>断裂时间/≧h</th>
+                            <th>伸长率/δ</th>
+                        </tr>
+                        {% endif %}
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% if data['mechanicalResult'] != None %}
+                            {% for row_index in range(data['mechanicalResult']|count) %}
+                            <td>
+                                {% if data['mechanicalResult'][row_index] is number %}
+                                {{ data['mechanicalResult'][row_index]|round(6) }}
+                                {% else %}
+                                {{ data['mechanicalResult'][row_index] }}
+                                {% endif %}
+                            </td>
+                            {% endfor %}
+                            {% endif %}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#menu').slinky({
+            title: true,
+        });
+    });
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                c_end = document.cookie.indexOf(";", c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return unescape(document.cookie.substring(c_start, c_end))
+            }
+        }
+        return ""
+    }
+    function checkCookie() {
+        username = getCookie('userid')
+        if (username != null && username != "") {
+            $('#username').text(username);
+            document.getElementById("buttons1").style.display = "block"
+            document.getElementById("buttons").style.display = "none"
+        }
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>集成计算材料工程信息基础设施数据库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon-16x16.png') }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon-32x32.png') }}" sizes="32x32">
+    <meta name="keywords" content="Ekomers Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel='stylesheet' type='text/css'/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Custom Theme files -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel='stylesheet' type='text/css'/>
+    <link href="{{ url_for('static', filename='css/jquery.slinky.css') }}" rel='stylesheet' type='text/css'/>
+    <!-- Custom Theme files -->
+    <!--webfont-->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.slinky.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+
+
+
+
+    </script>
+</head>
+<body onload="checkCookie()" onhashchange="hashChange()">
+<div id="header" class="header">
+    <div class="container">
+        <div class="header_top">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" width="80%" alt=""/>
+            </div>
+            <div class="top-nav" style="width: 60% !important; margin-left: 2% !important">
+                <ul class="nav1">
+                    <li class="active"><a href="{{ url_for('home') }}" style="font-size: 3.1em !important">集成计算材料工程信息基础设施数据库</a>
+                    </li>
+                </ul>
+            </div>
+            <ul id="buttons" class="widget" style="margin-top: 40px !important">
+                <a href="{{ url_for('register') }}">
+                    <li class="join">Join Now</li>
+                </a>
+                <a href="{{ url_for('login') }}">
+                    <li class="join">Login</li>
+                </a>
+            </ul>
+            <ul id="buttons1" class="widget" style="display: none">
+                <a href="#">
+                    <li class="join" id="username">User name</li>
+                </a>
+                <a href="#">
+                    <li class="join">Exit</li>
+                </a>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div id="menu" class="slinky-menu" style="transition-duration: 300ms; float: left;">
+            <ul style="transition-duration: 300ms;">
+                <li>
+                    <a href="#elements">按元素及含量搜索</a>
+                </li>
+                <li>
+                    <a href="#alloyname">按合金牌号搜索</a>
+                </li>
+                <li>
+                    <a href="#physics">按热物理性能及范围搜索</a>
+                </li>
+                <li>
+                    <a href="#mechanical">按力学性能及范围搜索</a>
+                </li>
+            </ul>
+        </div>
+        <div id="content" style="overflow-x: auto; overflow-y: auto; height: 600px; width:60%; padding-left: 3%;">
+            {% if not resultFlag %}
+            <section id="elements">
+            {% else %}
+            <section id="elements" style="display: none">
+            {% endif %}
+                <form action="searchByElement" method="post">
+                    <table border="1">
+                        <tr>
+                            <td>条目</td>
+                            <td>元素1</td>
+                            <td>元素2</td>
+                            <td>元素3</td>
+                            <td>元素4</td>
+                        </tr>
+                        <tr>
+                            <td>元素</td>
+                            <td>
+                                <select name="element1">
+                                    <option value="Ni">Ni</option>
+                                    <option value="Al">Al</option>
+                                    <option value="Co">Co</option>
+                                    <option value="Cr">Cr</option>
+                                    <option value="Cu">Cu</option>
+                                    <option value="Fe">Fe</option>
+                                    <option value="Hf">Hf</option>
+                                    <option value="Mn">Mn</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="element2">
+                                    <option value="Ni">Ni</option>
+                                    <option value="Al">Al</option>
+                                    <option value="Co">Co</option>
+                                    <option value="Cr">Cr</option>
+                                    <option value="Cu">Cu</option>
+                                    <option value="Fe">Fe</option>
+                                    <option value="Hf">Hf</option>
+                                    <option value="Mn">Mn</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="element3">
+                                    <option value="Ni">Ni</option>
+                                    <option value="Al">Al</option>
+                                    <option value="Co">Co</option>
+                                    <option value="Cr">Cr</option>
+                                    <option value="Cu">Cu</option>
+                                    <option value="Fe">Fe</option>
+                                    <option value="Hf">Hf</option>
+                                    <option value="Mn">Mn</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="element4">
+                                    <option value="Ni">Ni</option>
+                                    <option value="Al">Al</option>
+                                    <option value="Co">Co</option>
+                                    <option value="Cr">Cr</option>
+                                    <option value="Cu">Cu</option>
+                                    <option value="Fe">Fe</option>
+                                    <option value="Hf">Hf</option>
+                                    <option value="Mn">Mn</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>含量</td>
+                            <td>
+                                <input type="text" name="per1" maxlength=10 value="">
+                            </td>
+                            <td>
+                                <input type="text" name="per2" maxlength=10 value="">
+                            </td>
+                            <td>
+                                <input type="text" name="per3" maxlength=10 value="">
+                            </td>
+                            <td>
+                                <input type="text" name="per4" maxlength=10 value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit">
+                                    查询
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </section>
+            <section id="alloyname" style="display: none">
+                <form action="searchByAlloy" method="post">
+                    <input type="text" name="alloyname" maxlength=50 value=""> </br>
+                    <center>
+                        <button type="submit">查询</button>
+                    </center>
+                </form>
+            </section>
+            <section id="physics" style="display: none">
+                <form action="searchByPhysics" method="post">
+                    <table border="1">
+                        <tr>
+                            <td>
+                                <select name="metric">
+                                    <option value="solidMelt">固相线</option>
+                                    <option value="liquidMelt">液相线</option>
+                                    <option value="density">密度(25C拟合)</option>
+                                    <option value="densityK">密度斜率</option>
+                                    <option value="modulus">模量(25C)</option>
+                                    <option value="modulusK">模量斜率</option>
+                                    <option value="poisson">泊松比(25C)</option>
+                                    <option value="poissonK">泊松比斜率</option>
+                                    <option value="heatConduct">热导率(25C)</option>
+                                    <option value="heatConductK">热导率斜率</option>
+                                    <option value="elecConduct">电导率(25C)</option>
+                                    <option value="elecConductK">电导率斜率</option>
+                                    <option value="heatDilation">热膨胀(CTE 25C)</option>
+                                    <option value="heatDilationK">CTE斜率</option>
+                                    <option value="heatHan">热晗(25C)</option>
+                                    <option value="heatHanK">热晗斜率</option>
+                                    <option value="heatCapacity">热容(25C)</option>
+                                    <option value="heatCapacityK">热容斜率</option>
+                                    <option value="latentHeat">潜热(J/mole)</option>
+                                    <option value="shrink">体积收缩率(%)</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="value" maxlength=10 value="">
+                            </td>
+                            <td>偏差范围百分数</td>
+                            <td>
+                                <input type="text" name="per" maxlength=10 value="">
+                            </td>
+                            <td>
+                                <button type="submit">
+                                    查询
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </section>
+            <section id="mechanical" style="display: none">
+                <form action="searchByMechanical" method="post">
+                    <table border="1">
+                        <tr>
+                            <td>
+                                <select name="metric">
+                                    <option value="stretchU">拉伸UTS(MPa)</option>
+                                    <option value="stretchY">拉伸YS(MPa)</option>
+                                    <option value="stretchP">延伸率(%)</option>
+                                    <option value="sickness">硬度BHN</option>
+                                    <option value="compressIntensity">压缩YS(MPa)</option>
+                                    <option value="compressShuxing">压缩塑性(%)</option>
+                                    <option value="corrodeSpeed">腐蚀速率(mm/y)</option>
+                                    <option value="tiredR1">疲劳R-1</option>
+                                    <option value="tiredR0">疲劳R0</option>
+                                    <option value="corrodeSpeedKIC">应力腐蚀疲劳KIC</option>
+                                    <option value="changeK">稳定蠕变k</option>
+                                    <option value="changeN">稳定蠕变n</option>
+                                    <option value="rotateTiredness">旋转弯曲疲劳性能（退火）</option>
+                                    <option value="hotChangeIntensity">高温蠕变强度</option>
+                                    <option value="cellTime">断裂时间</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="value" maxlength=10 value=""></td>
+                            <td>偏差范围百分数</td>
+                            <td><input type="text" name="per" maxlength=10 value=""></td>
+                            <td>
+                                <button type="submit">
+                                    查询
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </section>
+                <span id="maxPages" style="display: none">{{ pages }}</span>
+            {% if resultFlag %}
+            <section id="result">
+            {% else %}
+            <section id="result" style="display: none">
+            {% endif %}
+                {% if pages > 0 %}
+                {% for page in range(pages) %}
+                    {% if page == 0 %}
+                    <table class="tableizer-table" id="page{{ page }}">
+                    {% else %}
+                    <table class="tableizer-table" id="page{{ page }}" style="display: none">
+                    {% endif %}
+                        <thead>
+                        <tr class="tableizer-firstrow">
+                            <th>合金牌号</th>
+                            <th>合金类型</th>
+                            <th>相位图</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for col in range(data[page]|count) %}
+                        <tr>
+                            <td><a href="{{ data[page][col][2] }}">{{ data[page][col][0] }}</a></td>
+                            <td>{{ data[page][col][1] }}</td>
+                            <td><img src="{{ data[page][col][3] }}" width="30%"></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+                {% else %}
+                    <span>无匹配数据</span>
+                {% endif %}
+                <ul class="pager">
+                    <li><a href="#previous" onclick="clickPre()">前一页</a></li>
+                    <li><a href="#next" onclick="clickNext()">下一页</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var pageIndex = 0;
+    var maxPages = parseInt(document.getElementById("maxPages").innerText);
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                c_end = document.cookie.indexOf(";", c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return unescape(document.cookie.substring(c_start, c_end))
+            }
+        }
+        return ""
+    }
+    function checkCookie() {
+        username = getCookie('userid')
+        if (username != null && username != "") {
+            $('#username').text(username);
+            document.getElementById("buttons1").style.display = "block"
+            document.getElementById("buttons").style.display = "none"
+        }
+        hashChange();
+    }
+    function setKeywordCookie() {
+        createCookie("keyword", $('#queryword').val(), 10)
+    }
+    function createCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+    function setResult() {
+        document.getElementById("elements").style.display = "none";
+        document.getElementById("alloyname").style.display = "none";
+        document.getElementById("physics").style.display = "none";
+        document.getElementById("mechanical").style.display = "none";
+        document.getElementById("result").style.display = "block";
+    }
+    function clickPre() {
+        if(pageIndex > 0) {
+            document.getElementById("page" + pageIndex).style.display = "none";
+            pageIndex = pageIndex - 1;
+            document.getElementById("page" + pageIndex).style.display = "block";
+        }
+    }
+    function clickNext() {
+        if(pageIndex < maxPages - 1) {
+            document.getElementById("page" + pageIndex).style.display = "none";
+            pageIndex = pageIndex + 1;
+            document.getElementById("page" + pageIndex).style.display = "block";
+        }
+    }
+    function hashChange() {
+        var hash = window.location.hash.slice(1);
+        if (!hash) {
+            return;
+        }
+        if(hash == "previous") {
+        }
+        else if(hash == "next") {
+        }
+        else {
+            document.getElementById("elements").style.display = "none";
+            document.getElementById("alloyname").style.display = "none";
+            document.getElementById("physics").style.display = "none";
+            document.getElementById("mechanical").style.display = "none";
+            document.getElementById("result").style.display = "none";
+            document.getElementById(hash).style.display = "block";
+        }
+    }
+
+
+
+
+
+</script>
+</html>		

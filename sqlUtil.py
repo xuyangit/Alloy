@@ -5,6 +5,19 @@ from sqlalchemy.ext.declarative import declarative_base
 #ORM基类
 Base = declarative_base()
 
+class User(Base):
+  __tablename__ = 'user'
+  id = Column(Text, primary_key=True)
+  firstname = Column(Text)
+  lastname = Column(Text)
+  eaddress = Column(Text)
+  password = Column(Text)
+
+  def __getitem__(self, item):
+        return getattr(self, item)
+  def as_dict(self):
+       return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 class Ingredient(Base):
     __tablename__ = "ingredient"
     __table_args__ = (
@@ -33,7 +46,6 @@ class PhysicsPerformance(Base):
     )
     alloyName = Column(String(length=30, convert_unicode=True))
     alloyType = Column(String(length=10))
-    picPath = Column(Text)
     solidMelt = Column(Float)
     liquidMelt = Column(Float)
     density = Column(Float)
@@ -54,14 +66,13 @@ class PhysicsPerformance(Base):
     heatCapacityK = Column(Float)
     latentHeat = Column(Float)
     shrink = Column(Float)
-    def __init__(self, alloyName=None, alloyType=None, picPath=None, solidMelt=None,
+    def __init__(self, alloyName=None, alloyType=None, solidMelt=None,
                  liquidMelt=None, density=None, densityK=None, modulus=None, modulusK=None,
                  poisson=None, poissonK=None, heatConduct=None, heatConductK=None, elecConduct=None,
                  elecConductK=None, heatDilation=None, heatDilationK=None, heatHan=None,
                  heatHanK=None, heatCapacity=None, heatCapacityK=None, latentHeat=None, shrink=None):
         self.alloyName = alloyName
         self.alloyType = alloyType
-        self.picPath = picPath
         self.solidMelt = solidMelt
         self.liquidMelt = liquidMelt
         self.density = density
@@ -86,6 +97,8 @@ class PhysicsPerformance(Base):
         return getattr(self, item)
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+    def as_list(self):
+        return [getattr(self, c.name) for c in self.__table__.columns]
 
 class MechanicalPerformance(Base):
     __tablename__ = "mechanical"
@@ -93,6 +106,7 @@ class MechanicalPerformance(Base):
     )
     id = Column(Integer, primary_key=True, autoincrement=True)
     alloyName = Column(String(length=30, convert_unicode=True))
+    alloyType = Column(String(length=10))
     craft = Column(Text)
     testTem = Column(Text)
     stretchU = Column(Integer)
@@ -114,12 +128,13 @@ class MechanicalPerformance(Base):
     cellTime = Column(Integer)
     cellPer = Column(Float)
 
-    def __init__(self, alloyName=None, craft=None, testTem=None, stretchU=None, stretchY=None, stretchP=None,
+    def __init__(self, alloyName=None, alloyType=None, craft=None, testTem=None, stretchU=None, stretchY=None, stretchP=None,
                  sickness=None, compressIntensity=None, compressShuxing=None, corrodeSpeed=None, tiredR1=None,
                  tiredR0=None, corrodeSpeedKIC=None, changeK=None, changeN=None, rotateTiredness=None,
                  hotChangeIntensity=None, cellTem=None, cellStrength=None, cellTime=None, cellPer=None):
         self.alloyName = alloyName
         self.craft = craft
+        self.alloyType = alloyType
         self.testTem = testTem
         self.stretchU = stretchU
         self.stretchP = stretchP
@@ -143,7 +158,8 @@ class MechanicalPerformance(Base):
         return getattr(self, item)
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
+    def as_list(self):
+        return [getattr(self, c.name) for c in self.__table__.columns]
 def get_or_create(session, model, **kwargs):
     instance = session.query(model).filter_by(**kwargs).first()
     if instance:

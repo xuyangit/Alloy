@@ -66,7 +66,7 @@ def getPhysics(filename):
             break
         else:
             row = sheet.range((i, 2), (i, propertyNum + 1)).value
-            dbSession.add(PhysicsPerformance(id, alloyType, "./" + alloyType + "/" + id + ".jpg",
+            dbSession.add(PhysicsPerformance(id, alloyType,
                                              row[0], row[1], row[2], row[3], row[4], row[5], row[6],
                                              row[7], row[8], row[9], row[10], row[11], row[12], row[13],
                                              row[14], row[15], row[16], row[17], row[18], row[19]
@@ -80,12 +80,15 @@ def getMechanical(filename):
     alloyType = filename.split("/")[2][0:-5]
     while(True):
         id = str(sheet.range((i, 1)).value)
+        print(id)
+        if(id.endswith(".0")):
+            id = id[:-2]
         if (id == "None"):
             break
         else:
             if(alloyType in ["Al合金", "Mg合金", "焊料合金"]):
                 row = sheet.range((i, 2), (i, 15)).value
-                dbSession.add(MechanicalPerformance(id, row[0], row[1], row[2], row[3], row[4],
+                dbSession.add(MechanicalPerformance(id, alloyType, row[0], row[1], row[2], row[3], row[4],
                                                     row[5], row[6], row[7], row[8], row[9],
                                                     row[10], row[11], row[12], row[13]
                                                     ))
@@ -93,20 +96,20 @@ def getMechanical(filename):
                 row = sheet.range((i, 2), (i, 10)).value
                 if(row[0] == None):
                     row[0] = "无"
-                dbSession.add(MechanicalPerformance(id, row[0], "无", row[1], row[2],
+                dbSession.add(MechanicalPerformance(id, alloyType, row[0], "无", row[1], row[2],
                                                     row[3], row[4], row[5], None, row[6], rotateTiredness=row[7],
                                                     hotChangeIntensity=row[8]
                                                     ))
                 dbSession.commit()
             elif(alloyType == "单晶高温合金"):
                 row = sheet.range((i, 2), (i, 10)).value
-                dbSession.add(MechanicalPerformance(id, row[0] if row[0] != None else "无", row[1] if row[1] != None else "无",
+                dbSession.add(MechanicalPerformance(id, alloyType, row[0] if row[0] != None else "无", row[1] if row[1] != None else "无",
                                                     row[2], row[3], row[4], cellTem=row[5], cellStrength=row[6], cellTime=row[7],
                                                     cellPer=row[8]))
                 dbSession.commit()
             else:
                 row = sheet.range((i, 2), (i, 11)).value
-                dbSession.add(MechanicalPerformance(id, row[0] if row[0] != None else "无", row[1] if row[1] != None else "无",
+                dbSession.add(MechanicalPerformance(id, alloyType, row[0] if row[0] != None else "无", row[1] if row[1] != None else "无",
                                                     row[2], row[3], row[4], cellTem=row[5], cellStrength=row[6], cellTime=row[7],
                                                     cellPer=row[8], sickness=row[9]))
                 dbSession.commit()
@@ -121,6 +124,6 @@ def transferMechanical():
     for file in files:
         getMechanical("./xlsx/" + file)
 if __name__=="__main__":
-    transferGredients()
+    transferMechanical()
 
 

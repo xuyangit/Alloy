@@ -1,0 +1,666 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24963,        658]
+NotebookOptionsPosition[     23922,        620]
+NotebookOutlinePosition[     24269,        635]
+CellTagsIndexPosition[     24226,        632]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.6986378786137543`*^9, 3.698637887551384*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"parent", "=", 
+   RowBox[{"SetDirectory", "[", 
+    RowBox[{"NotebookDirectory", "[", "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"fnames", "=", 
+  RowBox[{"FileNames", "[", "\"\<*.dat\>\"", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.699261881233699*^9, 3.699261896155823*^9}, {
+  3.6992620127509384`*^9, 3.6992620810329847`*^9}, {3.7079488989025946`*^9, 
+  3.7079489003715086`*^9}, {3.7079661659202394`*^9, 3.707966166498464*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"A356.dat\"\>", ",", "\<\"A380a.dat\"\>", 
+   ",", "\<\"A380.dat\"\>", ",", "\<\"B390.dat\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6992618972026615`*^9, {3.699262025391644*^9, 3.6992620815641737`*^9}, 
+   3.699266635682886*^9, 3.7079479249187307`*^9, 3.707948901121355*^9, 
+   3.7079571806751614`*^9, {3.7079619295866823`*^9, 3.707961951570093*^9}, 
+   3.7079620636727657`*^9, 3.7079622662235584`*^9, {3.7079623893067017`*^9, 
+   3.707962405036424*^9}, {3.7079661607795167`*^9, 3.7079661672639933`*^9}, 
+   3.7080770473214855`*^9, 3.708078492724496*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"names", "=", 
+  RowBox[{
+   RowBox[{"StringCases", "[", 
+    RowBox[{"fnames", ",", 
+     RowBox[{
+      RowBox[{"a__", "~~", "\"\<.dat\>\""}], "\[Rule]", "a"}]}], "]"}], "//", 
+   "Flatten"}]}]], "Input",
+ CellChangeTimes->{{3.708078157598448*^9, 3.7080782168107433`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"A356\"\>", ",", "\<\"A380a\"\>", ",", "\<\"A380\"\>", 
+   ",", "\<\"B390\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7080781743398714`*^9, 3.7080782173887396`*^9}, 
+   3.708078496577033*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"collect", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"DataExtractbatch", "[", "#", "]"}], "&"}], "/@", 
+   "names"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<collect.xlsx\>\"", ",", "collect", ",", "\"\<XLSX\>\""}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.7080784003457017`*^9, 3.7080784118953037`*^9}, {
+  3.7080785119224215`*^9, 3.7080785423598385`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set","shape",
+   "\"Lists \\!\\(\\*RowBox[{\\\"{\\\", \\\"tmp$2019\\\", \\\"}\\\"}]\\) and \
+\\!\\(\\*RowBox[{\\\"{\\\", \\\"}\\\"}]\\) are not the same shape.\"",2,19,22,
+   33361834292953976585,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.708078412629552*^9, 3.708078499905183*^9, 
+  3.7080785441723075`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part","partw",
+   "\"Part \\!\\(\\*RowBox[{\\\"1\\\"}]\\) of \\!\\(\\*RowBox[{\\\"{\\\", \
+\\\"}\\\"}]\\) does not exist.\"",2,19,23,33361834292953976585,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.708078412629552*^9, 3.708078499905183*^9, 
+  3.708078544219186*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part","pkspec1",
+   "\"The expression \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \\\"}\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"1\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]\\) cannot be used as a part specification.\"",2,
+   19,24,33361834292953976585,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.708078412629552*^9, 3.708078499905183*^9, 
+  3.708078544234808*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set","shape",
+   "\"Lists \\!\\(\\*RowBox[{\\\"{\\\", \\\"tmp$2095\\\", \\\"}\\\"}]\\) and \
+\\!\\(\\*RowBox[{\\\"{\\\", \\\"}\\\"}]\\) are not the same shape.\"",2,19,25,
+   33361834292953976585,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.708078412629552*^9, 3.708078499905183*^9, 
+  3.7080785442816825`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part","partw",
+   "\"Part \\!\\(\\*RowBox[{\\\"1\\\"}]\\) of \\!\\(\\*RowBox[{\\\"{\\\", \
+\\\"}\\\"}]\\) does not exist.\"",2,19,26,33361834292953976585,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.708078412629552*^9, 3.708078499905183*^9, 
+  3.708078544312934*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part","pkspec1",
+   "\"The expression \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \\\"}\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"1\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]\\) cannot be used as a part specification.\"",2,
+   19,27,33361834292953976585,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.708078412629552*^9, 3.708078499905183*^9, 
+  3.708078544328558*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"A356\"\>", ",", "556.`", ",", "614.99`", ",", 
+     "2.6857404995556267`", ",", 
+     RowBox[{"-", "0.00020548209478934916`"}], ",", "72.37077020208821`", ",", 
+     RowBox[{"-", "0.045005604121931955`"}], ",", "0.32866890400877496`", ",",
+      "0.00005552956900442031`", ",", "188.2390299692885`", ",", 
+     RowBox[{"-", "0.03206973320670672`"}], ",", "21.973078472298056`", ",", 
+     RowBox[{"-", "0.028943287169913755`"}], ",", "21.118348681929948`", ",", 
+     "0.010116826822747243`", ",", "98.68910545733836`", ",", 
+     "27.596919946694367`", ",", "21.964140808625345`", ",", 
+     "0.025278634254477652`", ",", "11707.205`", ",", "5.35768`"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"A380a\"\>", ",", "480.`", ",", "630.`", ",", 
+     "2.7899684992987375`", ",", 
+     RowBox[{"-", "0.00020283716844165498`"}], ",", "79.82294786816269`", ",", 
+     RowBox[{"-", "0.04617011724180441`"}], ",", "0.31683996493688643`", ",", 
+     "0.000047901253024675526`", ",", "151.95784109396914`", ",", 
+     RowBox[{"-", "0.005971613026524565`"}], ",", "18.345019845722298`", ",", 
+     RowBox[{"-", "0.025479051400212675`"}], ",", "20.688734402930407`", ",", 
+     "0.009741105558209945`", ",", 
+     RowBox[{"-", "1281.3476093969139`"}], ",", "27.07799536858653`", ",", 
+     "23.57523296703297`", ",", "0.017055862398471126`", ",", "12967.322`", 
+     ",", "5.84734`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"A380\"\>", ",", "480.`", ",", "630.`", ",", 
+     "2.7899684992987375`", ",", 
+     RowBox[{"-", "0.00020283716844165498`"}], ",", "79.82294786816269`", ",", 
+     RowBox[{"-", "0.04617011724180441`"}], ",", "0.31683996493688643`", ",", 
+     "0.000047901253024675526`", ",", "151.95784109396914`", ",", 
+     RowBox[{"-", "0.005971613026524565`"}], ",", "18.345019845722298`", ",", 
+     RowBox[{"-", "0.025479051400212675`"}], ",", "20.688734402930407`", ",", 
+     "0.009741105558209945`", ",", 
+     RowBox[{"-", "45.78724053295929`"}], ",", "0.964590354946596`", ",", 
+     "0.8218358974358976`", ",", "0.0007191941391941405`", ",", "461.256`", 
+     ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"B390\"\>", ",", "485.`", ",", "660.`", ",", 
+     "2.785443175474719`", ",", 
+     RowBox[{"-", "0.00018456733609859474`"}], ",", "90.3796298490048`", ",", 
+     RowBox[{"-", "0.04833462346692133`"}], ",", "0.299434200411805`", ",", 
+     "0.00004132535585330189`", ",", "134.7372948959048`", ",", 
+     RowBox[{"-", "0.03955572021127391`"}], ",", "16.098408364218713`", ",", 
+     RowBox[{"-", "0.0241895772731342`"}], ",", "18.8203007262303`", ",", 
+     "0.008680267096157719`", ",", 
+     RowBox[{"-", "70.63275200183031`"}], ",", "0.9510687207185703`", ",", 
+     "0.8033688963210706`", ",", "0.0007442852519149864`", ",", "552.38`", 
+     ",", "0"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7080784141029563`*^9, 3.708078500014564*^9, 
+  3.708078544328558*^9}],
+
+Cell[BoxData["\<\"collect.xlsx\"\>"], "Output",
+ CellChangeTimes->{3.7080784141029563`*^9, 3.708078500014564*^9, 
+  3.708078544328558*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DataExtract", "[", 
+  RowBox[{
+   RowBox[{"fnames", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], ",", "\"\<356\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.7079641457036314`*^9, 3.7079642210310264`*^9}, {
+  3.708077061614027*^9, 3.70807706339542*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"556.`", ",", "614.99`", ",", "2.6857404995556267`", ",", 
+   RowBox[{"-", "0.00020548209478934916`"}], ",", "72.37077020208821`", ",", 
+   RowBox[{"-", "0.045005604121931955`"}], ",", "0.32866890400877496`", ",", 
+   "0.00005552956900442031`", ",", "188.2390299692885`", ",", 
+   RowBox[{"-", "0.03206973320670672`"}], ",", "21.973078472298056`", ",", 
+   RowBox[{"-", "0.028943287169913755`"}], ",", "21.118348681929948`", ",", 
+   "0.010116826822747243`", ",", "98.68910545733836`", ",", 
+   "27.596919946694367`", ",", "21.964140808625345`", ",", 
+   "0.025278634254477652`", ",", "11707.205`", ",", "5.35768`"}], 
+  "}"}]], "Print",
+ CellChangeTimes->{{3.7079641872656403`*^9, 3.7079642215777664`*^9}, 
+   3.7079661771874065`*^9, 3.7080770647390523`*^9}],
+
+Cell[BoxData["\<\"356.xlsx\"\>"], "Output",
+ CellChangeTimes->{{3.7079641872656403`*^9, 3.707964221640269*^9}, 
+   3.707966179722232*^9, 3.7080770685156765`*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"NIndex", "[", 
+   RowBox[{"x_String", ",", "b_List"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "tmp", "}"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", "tmp", "}"}], "=", 
+      RowBox[{
+       RowBox[{"StringCases", "[", 
+        RowBox[{"b", ",", 
+         RowBox[{"a__", "~~", "x", "~~", "c__"}]}], "]"}], "//", 
+       "Flatten"}]}], ";", 
+     RowBox[{
+      RowBox[{"Position", "[", 
+       RowBox[{"b", ",", "tmp"}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "1"}], "]"}], "]"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DataExtractbatch", "[", "fname_String", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "file", ",", "data", ",", "head", ",", "body", ",", "temperature", ",", 
+      "fliquid", ",", "fsolid", ",", "liquid", ",", "solid", ",", "vchange", 
+      ",", "latent", ",", "blinfit", ",", "density", ",", "CTE", ",", 
+      "Tconductivity", ",", "Econductivity", ",", "Ymodulus", ",", "Tpoisson",
+       ",", "Tenthalpy", ",", "Tspecific", ",", "results"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"file", "=", 
+      RowBox[{"Import", "[", 
+       RowBox[{
+        RowBox[{"fname", "~~", "\"\<.dat\>\""}], ",", "\"\<Text\>\""}], 
+       "]"}]}], ";", 
+     RowBox[{"data", "=", 
+      RowBox[{"StringSplit", "[", 
+       RowBox[{"file", ",", "\"\<\\n\>\""}], "]"}]}], ";", 
+     RowBox[{"head", "=", 
+      RowBox[{"StringSplit", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", "\"\<\\t\>\""}], "]"}]}], ";", 
+     RowBox[{"body", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"StringSplit", "[", 
+         RowBox[{
+          RowBox[{"data", "[", 
+           RowBox[{"[", 
+            RowBox[{"2", ";;", 
+             RowBox[{"-", "1"}]}], "]"}], "]"}], ",", "\"\<\\t\>\""}], "]"}], 
+        "//.", 
+        RowBox[{"\"\< \>\"", "\[Rule]", "Null"}]}], "//", "ToExpression"}]}], 
+     ";", 
+     RowBox[{"temperature", "=", 
+      RowBox[{"body", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", 
+         RowBox[{"NIndex", "[", 
+          RowBox[{"\"\<(C\>\"", ",", "head"}], "]"}]}], "]"}], "]"}]}], ";", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"fliquid", "=", 
+        RowBox[{
+         RowBox[{"Select", "[", 
+          RowBox[{
+           RowBox[{"body", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", 
+              RowBox[{"NIndex", "[", 
+               RowBox[{"\"\<solid\>\"", ",", "head"}], "]"}]}], "]"}], "]"}], 
+           ",", 
+           RowBox[{
+            RowBox[{"#", "\[LessEqual]", "0.005"}], "&"}]}], "]"}], "//", 
+         "Length"}]}], ",", 
+       RowBox[{"fsolid", "=", 
+        RowBox[{
+         RowBox[{"Select", "[", 
+          RowBox[{
+           RowBox[{"body", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", 
+              RowBox[{"NIndex", "[", 
+               RowBox[{"\"\<liquid\>\"", ",", "head"}], "]"}]}], "]"}], "]"}],
+            ",", 
+           RowBox[{
+            RowBox[{"#", "\[GreaterEqual]", "0.005"}], "&"}]}], "]"}], "//", 
+         "Length"}]}]}], "}"}], ";", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"liquid", ",", "solid"}], "}"}], "=", 
+      RowBox[{"temperature", "[", 
+       RowBox[{"[", 
+        RowBox[{"{", 
+         RowBox[{"fliquid", ",", "fsolid"}], "}"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"vchange", "=", 
+      RowBox[{"Abs", "@", 
+       RowBox[{"Apply", "[", 
+        RowBox[{"Subtract", ",", 
+         RowBox[{
+          RowBox[{"body", "[", 
+           RowBox[{"[", 
+            RowBox[{
+             RowBox[{"fliquid", ";;", "fsolid"}], ",", 
+             RowBox[{"NIndex", "[", 
+              RowBox[{"\"\<change\>\"", ",", "head"}], "]"}]}], "]"}], "]"}], 
+          "//", "MinMax"}]}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"latent", "=", 
+      RowBox[{
+       RowBox[{"body", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"fliquid", ";;", "fsolid"}], ",", 
+          RowBox[{"NIndex", "[", 
+           RowBox[{"\"\<atent\>\"", ",", "head"}], "]"}]}], "]"}], "]"}], "//",
+        "Max"}]}], ";", 
+     RowBox[{
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolids_", ",", "index_"}], "]"}], ":=", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"r1", ",", "r2"}], "}"}], "/.", 
+       RowBox[{"FindFit", "[", 
+        RowBox[{
+         RowBox[{"Cases", "[", 
+          RowBox[{
+           RowBox[{"body", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"fsolids", ";;", 
+               RowBox[{"-", "1"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"NIndex", "[", 
+                 RowBox[{"\"\<(C\>\"", ",", "head"}], "]"}], ",", "index"}], 
+               "}"}]}], "]"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"_Real", ",", "_Real"}], "}"}]}], "]"}], ",", 
+         RowBox[{"r1", "+", 
+          RowBox[{"r2", 
+           RowBox[{"(", 
+            RowBox[{"x", "-", "25"}], ")"}]}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r1", ",", "r2"}], "}"}], ",", "x"}], "]"}]}]}], ";", 
+     RowBox[{"density", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<ensity\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"CTE", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<expansion\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Tconductivity", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<hermal\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Econductivity", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<trical conductivit\>\"", ",", "head"}], "]"}]}], 
+       "]"}]}], ";", 
+     RowBox[{"Ymodulus", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<oung\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Tpoisson", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<oisson\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Tenthalpy", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<nthalpy\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Tspecific", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<pecific\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"results", "=", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "fname", ",", "solid", ",", "liquid", ",", "density", ",", "Ymodulus",
+          ",", "Tpoisson", ",", "Tconductivity", ",", "Econductivity", ",", 
+         "CTE", ",", "Tenthalpy", ",", "Tspecific", ",", "latent", ",", 
+         "vchange"}], "}"}], "//", "Flatten"}]}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DataExtract", "[", 
+   RowBox[{"fname_String", ",", "output_String"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "file", ",", "data", ",", "head", ",", "body", ",", "temperature", ",", 
+      "fliquid", ",", "fsolid", ",", "liquid", ",", "solid", ",", "vchange", 
+      ",", "latent", ",", "blinfit", ",", "density", ",", "CTE", ",", 
+      "Tconductivity", ",", "Econductivity", ",", "Ymodulus", ",", "Tpoisson",
+       ",", "Tenthalpy", ",", "Tspecific", ",", "results"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"file", "=", 
+      RowBox[{"Import", "[", 
+       RowBox[{"fname", ",", "\"\<Text\>\""}], "]"}]}], ";", 
+     RowBox[{"data", "=", 
+      RowBox[{"StringSplit", "[", 
+       RowBox[{"file", ",", "\"\<\\n\>\""}], "]"}]}], ";", 
+     RowBox[{"head", "=", 
+      RowBox[{"StringSplit", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", "\"\<\\t\>\""}], "]"}]}], ";", 
+     RowBox[{"body", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"StringSplit", "[", 
+         RowBox[{
+          RowBox[{"data", "[", 
+           RowBox[{"[", 
+            RowBox[{"2", ";;", 
+             RowBox[{"-", "1"}]}], "]"}], "]"}], ",", "\"\<\\t\>\""}], "]"}], 
+        "//.", 
+        RowBox[{"\"\< \>\"", "\[Rule]", "Null"}]}], "//", "ToExpression"}]}], 
+     ";", 
+     RowBox[{"temperature", "=", 
+      RowBox[{"body", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", 
+         RowBox[{"NIndex", "[", 
+          RowBox[{"\"\<(C\>\"", ",", "head"}], "]"}]}], "]"}], "]"}]}], ";", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"fliquid", "=", 
+        RowBox[{
+         RowBox[{"Select", "[", 
+          RowBox[{
+           RowBox[{"body", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", 
+              RowBox[{"NIndex", "[", 
+               RowBox[{"\"\<solid\>\"", ",", "head"}], "]"}]}], "]"}], "]"}], 
+           ",", 
+           RowBox[{
+            RowBox[{"#", "\[LessEqual]", "0.005"}], "&"}]}], "]"}], "//", 
+         "Length"}]}], ",", 
+       RowBox[{"fsolid", "=", 
+        RowBox[{
+         RowBox[{"Select", "[", 
+          RowBox[{
+           RowBox[{"body", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", 
+              RowBox[{"NIndex", "[", 
+               RowBox[{"\"\<liquid\>\"", ",", "head"}], "]"}]}], "]"}], "]"}],
+            ",", 
+           RowBox[{
+            RowBox[{"#", "\[GreaterEqual]", "0.005"}], "&"}]}], "]"}], "//", 
+         "Length"}]}]}], "}"}], ";", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"liquid", ",", "solid"}], "}"}], "=", 
+      RowBox[{"temperature", "[", 
+       RowBox[{"[", 
+        RowBox[{"{", 
+         RowBox[{"fliquid", ",", "fsolid"}], "}"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"vchange", "=", 
+      RowBox[{"Abs", "@", 
+       RowBox[{"Apply", "[", 
+        RowBox[{"Subtract", ",", 
+         RowBox[{
+          RowBox[{"body", "[", 
+           RowBox[{"[", 
+            RowBox[{
+             RowBox[{"fliquid", ";;", "fsolid"}], ",", 
+             RowBox[{"NIndex", "[", 
+              RowBox[{"\"\<change\>\"", ",", "head"}], "]"}]}], "]"}], "]"}], 
+          "//", "MinMax"}]}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"latent", "=", 
+      RowBox[{
+       RowBox[{"body", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"fliquid", ";;", "fsolid"}], ",", 
+          RowBox[{"NIndex", "[", 
+           RowBox[{"\"\<atent\>\"", ",", "head"}], "]"}]}], "]"}], "]"}], "//",
+        "Max"}]}], ";", 
+     RowBox[{
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolids_", ",", "index_"}], "]"}], ":=", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"r1", ",", "r2"}], "}"}], "/.", 
+       RowBox[{"FindFit", "[", 
+        RowBox[{
+         RowBox[{"Cases", "[", 
+          RowBox[{
+           RowBox[{"body", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"fsolids", ";;", 
+               RowBox[{"-", "1"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"NIndex", "[", 
+                 RowBox[{"\"\<(C\>\"", ",", "head"}], "]"}], ",", "index"}], 
+               "}"}]}], "]"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"_Real", ",", "_Real"}], "}"}]}], "]"}], ",", 
+         RowBox[{"r1", "+", 
+          RowBox[{"r2", 
+           RowBox[{"(", 
+            RowBox[{"x", "-", "25"}], ")"}]}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"r1", ",", "r2"}], "}"}], ",", "x"}], "]"}]}]}], ";", 
+     RowBox[{"density", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<ensity\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"CTE", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<expansion\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Tconductivity", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<hermal\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Econductivity", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<trical conductivit\>\"", ",", "head"}], "]"}]}], 
+       "]"}]}], ";", 
+     RowBox[{"Ymodulus", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<oung\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Tpoisson", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<oisson\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Tenthalpy", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<nthalpy\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"Tspecific", "=", 
+      RowBox[{"blinfit", "[", 
+       RowBox[{"fsolid", ",", 
+        RowBox[{"NIndex", "[", 
+         RowBox[{"\"\<pecific\>\"", ",", "head"}], "]"}]}], "]"}]}], ";", 
+     RowBox[{"results", "=", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "solid", ",", "liquid", ",", "density", ",", "Ymodulus", ",", 
+         "Tpoisson", ",", "Tconductivity", ",", "Econductivity", ",", "CTE", 
+         ",", "Tenthalpy", ",", "Tspecific", ",", "latent", ",", "vchange"}], 
+        "}"}], "//", "Flatten"}]}], ";", 
+     RowBox[{"Print", "[", "results", "]"}], ";", 
+     RowBox[{"Export", "[", 
+      RowBox[{
+       RowBox[{"output", "~~", "\"\<.xlsx\>\""}], ",", 
+       RowBox[{"{", "results", "}"}], ",", "\"\<XLSX\>\""}], "]"}]}]}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7079637475064497`*^9, 3.7079638193917274`*^9}, {
+  3.7079638582916183`*^9, 3.7079641437818537`*^9}, {3.707964311726022*^9, 
+  3.7079643124541626`*^9}, {3.708078239331481*^9, 3.7080783234100895`*^9}, {
+  3.7080783674254594`*^9, 3.7080783893730536`*^9}}]
+},
+WindowSize->{1520, 805},
+WindowMargins->{{-9, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 144, 2, 30, "Input"],
+Cell[CellGroupData[{
+Cell[727, 26, 481, 10, 50, "Input"],
+Cell[1211, 38, 605, 10, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1853, 53, 297, 8, 30, "Input"],
+Cell[2153, 63, 238, 5, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2428, 73, 408, 10, 50, "Input"],
+Cell[2839, 85, 369, 8, 24, "Message"],
+Cell[3211, 95, 325, 7, 24, "Message"],
+Cell[3539, 104, 446, 9, 24, "Message"],
+Cell[3988, 115, 369, 8, 24, "Message"],
+Cell[4360, 125, 325, 7, 24, "Message"],
+Cell[4688, 134, 446, 9, 24, "Message"],
+Cell[5137, 145, 2994, 52, 107, "Output"],
+Cell[8134, 199, 138, 2, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8309, 206, 274, 6, 30, "Input"],
+Cell[8586, 214, 798, 13, 22, "Print"],
+Cell[9387, 229, 161, 2, 30, "Output"]
+}, Open  ]],
+Cell[9563, 234, 14355, 384, 867, "Input"]
+}
+]
+*)
+
